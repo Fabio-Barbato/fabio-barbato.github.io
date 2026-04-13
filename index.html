@@ -1,501 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabio Barbato — Developer</title>
+  <meta name="description" content="Fabio Barbato | Computer Science Student & Developer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--bg2:#111118;--surface:#16161f;--surface2:#1e1e2a;--border:rgba(255,255,255,0.07);--accent:#c8f04b;--accent2:#7b61ff;--text:#e8e8f0;--muted:#6b6b80;--card-hover:#1a1a26}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);text-decoration:none;letter-spacing:-0.02em}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;letter-spacing:0.04em;transition:color 0.2s}
+    .nav-links a:hover{color:var(--text)}
+    #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+    .hero-blob{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,240,75,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+    .hero-blob2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(123,97,255,0.1) 0%,transparent 70%);bottom:0;left:200px;pointer-events:none}
+    .hero-content{position:relative;max-width:1200px;margin:0 auto;width:100%}
+    .hero-label{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent);background:rgba(200,240,75,0.08);border:1px solid rgba(200,240,75,0.2);padding:0.3rem 0.8rem;border-radius:100px;margin-bottom:1.5rem;letter-spacing:0.06em}
+    .hero-label::before{content:'●';font-size:0.5rem;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,7vw,6rem);line-height:1.0;letter-spacing:-0.04em;margin-bottom:1.5rem}
+    .hero-name{color:var(--accent);display:block}
+    .hero-sub{font-size:1.1rem;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:2.5rem}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#0a0a0f;font-weight:700;font-size:0.9rem;padding:0.75rem 1.5rem;border-radius:8px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;letter-spacing:0.01em}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,240,75,0.25)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--border);color:var(--text);font-weight:500;font-size:0.9rem;padding:0.75rem 1.5rem;border-radius:8px;text-decoration:none;transition:border-color 0.2s,background 0.2s}
+    .btn-ghost:hover{border-color:rgba(255,255,255,0.2);background:var(--surface)}
+    .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+    .stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;color:var(--text)}
+    .stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.15rem}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--muted);font-size:0.75rem;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-decoration:none}
+    .scroll-line{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:scrollAnim 1.8s ease-in-out infinite}
+    @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:bottom}}
+    #about{padding:7rem 3rem;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .container{max-width:1200px;margin:0 auto}
+    .section-label{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-img-frame{position:relative;display:inline-block}
+    .about-img-frame::before{content:'';position:absolute;inset:-12px;border:1px solid rgba(200,240,75,0.2);border-radius:20px;transform:rotate(3deg)}
+    .about-img-frame img{width:100%;max-width:380px;border-radius:16px;display:block;filter:grayscale(20%)}
+    .about-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.2rem}
+    .about-text{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:1rem}
+    .skills-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+    .skill-chip{font-family:'DM Mono',monospace;font-size:0.78rem;padding:0.35rem 0.8rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--muted);transition:border-color 0.2s,color 0.2s}
+    .skill-chip:hover{border-color:rgba(200,240,75,0.3);color:var(--accent)}
+    #projects{padding:7rem 3rem}
+    .projects-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
+    .projects-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.03em}
+    .filter-tabs{display:flex;gap:0.5rem;flex-wrap:wrap}
+    .filter-tab{font-family:'DM Mono',monospace;font-size:0.78rem;padding:0.4rem 1rem;background:transparent;border:1px solid var(--border);border-radius:100px;color:var(--muted);cursor:pointer;transition:all 0.2s;letter-spacing:0.04em}
+    .filter-tab:hover,.filter-tab.active{background:var(--accent);border-color:var(--accent);color:#0a0a0f}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;opacity:0;transform:translateY(24px)}
+    .project-card.visible{opacity:1;transform:none}
+    .project-card.hidden{display:none}
+    .project-card:hover{transform:translateY(-6px)!important;border-color:rgba(200,240,75,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+    .card-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--surface2)}
+    .card-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block}
+    .project-card:hover .card-image img{transform:scale(1.06)}
+    .card-overlay{position:absolute;inset:0;background:rgba(10,10,15,0.75);display:flex;align-items:center;justify-content:center;gap:0.75rem;opacity:0;transition:opacity 0.3s}
+    .project-card:hover .card-overlay{opacity:1}
+    .overlay-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.55rem 1rem;border-radius:8px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:transform 0.2s}
+    .overlay-btn:hover{transform:scale(1.05)}
+    .overlay-btn.primary{background:var(--accent);color:#0a0a0f}
+    .overlay-btn.secondary{background:rgba(255,255,255,0.1);color:var(--text);border:1px solid rgba(255,255,255,0.15)}
+    .card-body{padding:1.25rem 1.5rem 1.5rem;display:flex;flex-direction:column;flex:1}
+    .card-category{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem}
+    .card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:0.6rem;letter-spacing:-0.02em;color:var(--text)}
+    .card-desc{font-size:0.875rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:1rem}
+    .card-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:auto}
+    .tag{font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.25rem 0.65rem;border-radius:5px;font-weight:400;letter-spacing:0.02em}
+    .tag-sys{background:rgba(123,97,255,0.12);color:#a48fff;border:1px solid rgba(123,97,255,0.2)}
+    .tag-ml{background:rgba(251,188,5,0.10);color:#f5c842;border:1px solid rgba(251,188,5,0.2)}
+    .tag-game{background:rgba(52,211,153,0.10);color:#6ee7b7;border:1px solid rgba(52,211,153,0.2)}
+    .tag-web{background:rgba(56,189,248,0.10);color:#7dd3fc;border:1px solid rgba(56,189,248,0.2)}
+    .tag-ios{background:rgba(249,115,22,0.10);color:#fdba74;border:1px solid rgba(249,115,22,0.2)}
+    .tag-infra{background:rgba(200,240,75,0.10);color:#c8f04b;border:1px solid rgba(200,240,75,0.2)}
+    .project-card.featured{grid-column:span 2;flex-direction:row}
+    .project-card.featured .card-image{width:55%;flex-shrink:0;aspect-ratio:auto}
+    .project-card.featured .card-body{padding:2rem}
+    .project-card.featured .card-title{font-size:1.4rem}
+    .project-card.featured .card-desc{font-size:0.92rem}
+    #contact{background:var(--bg2);border-top:1px solid var(--border);padding:7rem 3rem}
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .contact-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.03em;margin-bottom:1rem}
+    .contact-sub{color:var(--muted);line-height:1.8;margin-bottom:2rem}
+    .contact-links{display:flex;flex-direction:column;gap:1rem}
+    .contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:border-color 0.2s,transform 0.2s}
+    .contact-link:hover{border-color:rgba(200,240,75,0.3);transform:translateX(4px)}
+    .contact-link-icon{width:40px;height:40px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--accent);flex-shrink:0}
+    .contact-link-text strong{display:block;font-size:0.9rem}
+    .contact-link-text span{font-size:0.8rem;color:var(--muted)}
+    .contact-deco-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem}
+    .deco-mono{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--muted);line-height:2;white-space:pre}
+    .deco-mono .k{color:#a48fff}
+    .deco-mono .s{color:#c8f04b}
+    .deco-mono .v{color:#7dd3fc}
+    .deco-mono .c{color:#6ee7b7}
+    footer{text-align:center;padding:1.5rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted)}
+    .fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .fade-in.visible{opacity:1;transform:none}
+    @media(max-width:1024px){.projects-grid{grid-template-columns:repeat(2,1fr)}.project-card.featured{grid-column:span 2;flex-direction:column}.project-card.featured .card-image{width:100%;aspect-ratio:16/9}.about-grid{grid-template-columns:1fr;gap:3rem}.contact-inner{grid-template-columns:1fr;gap:3rem}}
+    @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}#hero,#about,#projects,#contact{padding-left:1.5rem;padding-right:1.5rem}.projects-grid{grid-template-columns:1fr}.project-card.featured{grid-column:span 1;flex-direction:column}.project-card.featured .card-image{width:100%;aspect-ratio:16/9}.hero-stats{gap:1.5rem}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#hero" class="nav-logo">FB.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <title>Fabio Barbato</title>
-
-    <meta name="keywords" content="Barbato, Fabio, C, C++, Java, SQL, PL/SQL, Unreal Engine 4, Swift, CoreML, Unity" />
-
-    <meta name="description" content="Fabio Barbato | Developer" />
-
- 
-
-    <meta name="theme-color" content="#36d1dc" />
-
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Fabio Barbato | Developer" />
-    <meta property="og:description" content="Computer Science student. Precise and reliable, oriented towards teamwork, 
-      continuous learning, and tackling challenges for professional and personal growth." />
-
-
-
-    <!-- link tags -->
-    <link rel="preload" as="style" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-
-    <!-- FontAwesome Icons link -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script defer src="./javascript/scrollreveal.min.js"></script>
-    <script
-      defer
-      type="text/javascript"
-      src="./javascript/scrollveal.js"
-    ></script>
-
-
-  </head>
-  <body>
-    <!-- Hero Section -->
-    <div id="hero">
-      <section class="container">
-        <h1 class="hero-title">
-          Hi, my name is <span class="text-color-main name">Fabio Barbato
-        </h1>
-        <p class="hero-cta">
-          <a class="cta-btn cta-btn--hero" href="#contact">Get in touch</a>
-        </p>
-      </section>
-      <a href="#about" class="scroll-down-link" aria-label="scroll-down">
-        <div class="scroll-down"></div
-      ></a>
+  <div id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-blob"></div>
+    <div class="hero-blob2"></div>
+    <div class="hero-content">
+      <div class="hero-label">Available for opportunities</div>
+      <h1>Hi, I'm<br><span class="hero-name">Fabio Barbato</span></h1>
+      <p class="hero-sub">Computer Science student passionate about systems, AI, and interactive experiences. I build things that are precise, reliable, and a little ambitious.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary"><i class="fa-solid fa-grid-2"></i> View Projects</a>
+        <a href="#contact" class="btn-ghost"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">10+</div><div class="stat-label">Projects Built</div></div>
+        <div><div class="stat-num">8+</div><div class="stat-label">Technologies</div></div>
+        <div><div class="stat-num">3+</div><div class="stat-label">Years of Coding</div></div>
+      </div>
     </div>
-    <!-- /END Hero Section -->
+    <a href="#about" class="scroll-hint"><div class="scroll-line"></div>scroll</a>
+  </div>
 
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="row about-wrapper">
-          <div class="about-wrapper__image">
-            <img
-              class="img-fluid"
-              src="./assets/profile.png"
-              alt="Profile Image"
-              width="450"
-              height="350"
-              style="border-radius: 50%;"
-            />
-          </div>
-          <div class="about-wrapper__info">
-            <p class="about-wrapper__info-text">
-              Computer Science student. Precise and reliable, 
-              oriented towards teamwork, continuous learning, and tackling challenges for professional and personal growth.
-            </p>
-            <span class="about-wrapper__cta">
-            </span>
+  <section id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div><div class="about-img-frame"><img src="./assets/profile.png" alt="Fabio Barbato"/></div></div>
+        <div>
+          <div class="section-label">// about me</div>
+          <h2 class="about-title">Turning ideas into <span style="color:var(--accent)">working systems</span></h2>
+          <p class="about-text">Computer Science student at the University of Naples Federico II. Precise and reliable, oriented towards teamwork, continuous learning, and tackling challenges for professional and personal growth.</p>
+          <p class="about-text">From low-level data structures in C++ to machine learning models and interactive games — I enjoy the full spectrum of software engineering.</p>
+          <div class="skills-list">
+            <span class="skill-chip">C / C++</span><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">Swift</span><span class="skill-chip">SQL / PL·SQL</span><span class="skill-chip">ROS2</span><span class="skill-chip">Unity</span><span class="skill-chip">Unreal Engine</span><span class="skill-chip">CoreML</span><span class="skill-chip">Docker</span>
           </div>
         </div>
       </div>
-    </section>
-    <!-- /END About Section -->
+    </div>
+  </section>
 
-    <!--Projects Section-->
-    <section id="projects">
-      <div class="container">
-        <div class="project-wrapper">
-          <h2 class="section-title dark-blue-text">Projects</h2>
-
-    <!-- WEBOTS + ROS2 SETUP -->
-         <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Webots + ROS2 Setup</h3>
-              <p class="project-wrapper__text-info">
-                A complete setup guide to combine Webots simulator (from your macOS computer) and ROS2 Humble (running in Docker),
-                in order to develop robotic projects.</br>
-                It includes dedicated ROS2 nodes for sensor publishing and command handling, plus an example obstacle avoidance algorithm.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a 
-                  href="https://github.com/Fabio-Barbato/webots-ros2-setup.git"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-              <div class="thumbnail rounded">
-                <img
-                src="./assets/robot.png"
-                class="img-fluid"
-                  alt="Project Image"
-                  width="1024"
-                  height="1024"
-                />
-              </div>
-          </div>
-          </article>
-          <!-- /END Project -->
-
-    <!-- SMARTBIN -->
-         <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">SmartBin</h3>
-              <p class="project-wrapper__text-info">
-                Intelligent street bin monitoring system in real time on Australian territory. The system offers three main features:</br>
-              1. A dashboard to visualize the current state of bins; </br>
-              2. A predictive model to predict the level of fullnes; </br>
-              3. A best routing algorithm to visualize the smartest way to empty trash bins;
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a 
-                  href="https://github.com/Fabio-Barbato/SmartBin.git"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-              <div class="thumbnail rounded">
-                <img
-                src="./assets/SmartBin.png"
-                class="img-fluid"
-                  alt="Project Image"
-                  width="1024"
-                  height="1024"
-                />
-              </div>
-          </div>
-          </article>
-          <!-- /END Project -->
-
-    <!-- BITBOOKS -->
-         <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">BitBooks</h3>
-              <p class="project-wrapper__text-info">
-                A client-server application implemented with sockets and TCP/IP connection, which simulates the behaviour of a library and in particular the lending of books. <br>
-                Browse through the available books, read the description of a book and have a look at the preview and, if interested, add it to your cart and it will be yours for a period.<br>
-                The project is handled with multi-threading, so several clients are handled simultaneously, as well as the possible simultaneous request of several users for the same book.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/BT_demo.mp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-                <a href="https://github.com/Fabio-Barbato/BitBooks/" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-              <a href="./assets/BT_demo.mp4" target="_self" rel="noopener noreferrer"></a>
-              <div class="thumbnail rounded">
-                <img
-                src="./assets/BitBooks.png"
-                class="img-fluid"
-                  alt="Project Image"
-                  width="1024"
-                  height="1024"
-                />
-              </div>
-          </div>
-          </article>
-          <!-- /END Project -->
-
-          
-            <!-- BOOKRECOMMENDER -->
-         <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">BookRecommender</h3>
-              <p class="project-wrapper__text-info">
-                  BookRecommender is an app, that helps book readers to choose their next
-                  books to read. Basically, this app has two main features:<br>
-                  1. Based on the user’s tastes, the system will recommend other books
-                  through a trained machine learning model;<br>
-                  2. The user can select the recommended books to see their description and
-                  their preview, so that they can easily understand if the plot and the style
-                  of the book are among the user’s tastes.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/BR_demo.mp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-                <a href="https://github.com/FabioBarbat0/BookRecommender" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-              <a href="./assets/BR_demo.mp4" target="_self" rel="noopener noreferrer"></a>
-              <div class="thumbnail rounded">
-                <img
-                src="./assets/BookRecommender.png"
-                class="img-fluid"
-                  alt="Project Image"
-                  width="1024"
-                  height="1024"
-                />
-              </div>
-          </div>
-          </article>
-          <!-- /END Project -->
-          
-          <!-- SYMPHONYX -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Symphonyx</h3>
-              <p class="project-wrapper__text-info">
-                Symphonyx is an immersive audio-based puzzle game set in a mysterious forest, 
-                where players rely on their senses of hearing and touching to navigate through a visually obscured environment. 
-                As the screen remains black, players are thrust into a world where sound becomes their guide and haptic feedback becomes their 
-                connection to the game world. Now wear headphones and enjoy the demo!
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/symphonyxDEMO.mp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-              <a href="./assets/symphonyxDEMO.mp4" target="_self" rel="noopener noreferrer"></a>
-              <div class="thumbnail rounded">
-                <img
-                src="./assets/symphonyx.png"
-                class="img-fluid"
-                  alt="Project Image"
-                  width="1366"
-                  height="767"
-                />
-              </div>
-          </div>
-          </article>
-          <!-- /END Project -->
-
-          <!-- CHAPTER CHASE -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Chapter Chase</h3>
-              <p class="project-wrapper__text-info">
-                A 2D platform videogame. Help a writer to recover the lost pages of his book, to face dangers and to collect new ideas to overcome the writer's block.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/Chapter Chase Gameplay.mov"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-                <a href="https://github.com/FabioBarbat0/GameRepo" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-                <div class="thumbnail rounded">
-                  <img
-                    src="./assets/chapterChase.png"
-                    class="img-fluid"
-                    alt="Project Image"
-                    width="1366"
-                    height="767"
-                  />
-                </div>
-            </div>
-          </article>
-          <!-- /END Project -->
-
-          <!-- ARTICLE ASK AI -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Just Ask AI</h3>
-              <p class="project-wrapper__text-info">
-                Whether you're a solo developer, part of a small indie team, or a seasoned professional, 
-                "Ask AI" empowers you to leverage AI technology and Midjourney to create visually stunning 2D game assets. 
-                Unlock your creative potential, accelerate your asset creation process, and embark on a journey to captivate players with your unique gaming experience.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="https://medium.com/@antoniaambrosio/just-ask-ai-game-creation-66a4eddafad5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Read</a>
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-                <div class="thumbnail rounded">
-                  <img
-                    src="./assets/AskAI.png"
-                    class="img-fluid"
-                    alt="Project Image"
-                    width="1366"
-                    height="767"
-                  />
-                </div>
-            </div>
-          </article>
-          <!-- /END Project -->
-
-          <!-- UNORI -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Unori</h3>
-              <p class="project-wrapper__text-info">
-                Unori is an educational app designed specifically for iPad, offering an interactive way to learn American Sign Language (ASL). 
-                One of the standout features of Unori is its camera integration, powered by advanced machine learning models. 
-                Users can practice their signing skills by performing the signs in front of the iPad's camera. 
-                The app's user-friendly interface and intuitive navigation make it easy to explore and learn at one's own pace.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/UnoriDEMO.mp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-                <a href="https://github.com/FabioBarbat0/ThePupasRepo" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-                <div class="thumbnail rounded">
-                  <img
-                    src="./assets/unori.png"
-                    class="img-fluid"
-                    alt="Project Image"
-                    width="1366"
-                    height="767"
-                  />
-                </div>
-            </div>
-          </article>
-          <!-- /END Project -->
-
-          <!-- THE TREASURE HUNTER -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">The Treasure Hunter</h3>
-              <p class="project-wrapper__text-info">
-                Treasure Hunter is an immersive 3D first-person shooter (FPS) video game that plunges players into a perilous adventure within an ancient temple. 
-                As a brave treasure hunter, you find yourself trapped in a long-forgotten temple, rumored to house unimaginable riches. 
-                Your mission is to navigate through a series of intricately designed chambers, filled with enigmatic riddles, cunning traps, and untold dangers, 
-                all while relentlessly pursuing the ultimate prize: the legendary treasure hidden within.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="./assets/TreasureDEMO.mp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--hero cta-btn--projects"
-                  >Demo</a
-                >
-                <a href="https://github.com/Fabio-Barbato/Unreal-Project" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-                <div class="thumbnail rounded">
-                  <img
-                    src="./assets/treasure.png"
-                    class="img-fluid"
-                    alt="Project Image"
-                    width="1366"
-                    height="767"
-                  />
-                </div>
-            </div>
-          </article>
-          <!-- /END Project -->
-
-
-          <!-- LASD -->
-          <article class="row">
-            <div class="project-wrapper__text">
-              <h3 class="project-wrapper__text-title">Data Structures Libraries</h3>
-              <p class="project-wrapper__text-info">
-                Libraries of main data structures as array, list, binary tree and matrix developed in C++
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a href="https://github.com/Fabio-Barbato/LASD_Repository" target="_blank" class="cta-btn text-color-main"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-
-            <div class="project-wrapper__image">
-                <div class="thumbnail rounded">
-                  <img
-                    src="./assets/LASD.jpg"
-                    class="img-fluid"
-                    alt="Project Image"
-                    width="1366"
-                    height="767"
-                  />
-                </div>
-            </div>
-          </article>
-          <!-- /END Project -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-header fade-in">
+        <div><div class="section-label">// projects</div><h2 class="projects-title">Things I've built</h2></div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="systems">Systems</button>
+          <button class="filter-tab" data-filter="ml">AI / ML</button>
+          <button class="filter-tab" data-filter="games">Games</button>
+          <button class="filter-tab" data-filter="ios">iOS</button>
         </div>
       </div>
-    </section>
-    <!-- End Projects Section -->
 
+      <div class="projects-grid">
 
+        <div class="project-card featured" data-category="systems">
+          <div class="card-image"><img src="./assets/robot.png" alt="Webots+ROS2"/>
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/webots-ros2-setup.git" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Robotics</div>
+            <div class="card-title">Webots + ROS2 Setup</div>
+            <p class="card-desc">A complete setup guide combining the Webots simulator (macOS) with ROS2 Humble running in Docker. Includes dedicated ROS2 nodes for sensor publishing and command handling, plus an obstacle avoidance algorithm.</p>
+            <div class="card-tags"><span class="tag tag-sys">ROS2</span><span class="tag tag-sys">Docker</span><span class="tag tag-sys">Python</span><span class="tag tag-infra">Webots</span></div>
+          </div>
+        </div>
 
-    <!-- Footer Section -->
-    <section id = "contact">
-      <footer class="footer">
-        <div class="container">
-          <a href="#hero" class="back-to-top" aria-label="go back to top">
-            <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
-          </a>
-        <h2 class="section-title">CONTACTS</h2>
-          <div class="social-links">
-            <!--EMAIL-->
-            <a
-            href="mailto:fbarbato200@gmail.com"
-            aria-label="mail"
-          >
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-          <!--LINKEDIN-->
-            <a
-              href="https://www.linkedin.com/in/fabio-barbato-a716a3125/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="linkedin"
-            >
-              <i class="fa-brands fa-linkedin"></i>
+        <div class="project-card" data-category="ml">
+          <div class="card-image"><img src="./assets/SmartBin.png" alt="SmartBin"/>
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/SmartBin.git" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Data Science</div>
+            <div class="card-title">SmartBin</div>
+            <p class="card-desc">Real-time intelligent bin monitoring system. Features a live dashboard, predictive ML model for fill-level forecasting, and an optimal routing algorithm for collection vehicles.</p>
+            <div class="card-tags"><span class="tag tag-ml">Machine Learning</span><span class="tag tag-ml">Python</span><span class="tag tag-web">Dashboard</span><span class="tag tag-infra">SQL</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="systems">
+          <div class="card-image"><img src="./assets/BitBooks.png" alt="BitBooks"/>
+            <div class="card-overlay">
+              <a href="./assets/BT_demo.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
+              <a href="https://github.com/Fabio-Barbato/BitBooks/" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Systems Programming</div>
+            <div class="card-title">BitBooks</div>
+            <p class="card-desc">Client-server library app built on TCP/IP sockets and multi-threading. Multiple clients handled simultaneously with concurrency-safe book lending logic.</p>
+            <div class="card-tags"><span class="tag tag-sys">Java</span><span class="tag tag-sys">TCP/IP</span><span class="tag tag-sys">Multi-threading</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ml">
+          <div class="card-image"><img src="./assets/BookRecommender.png" alt="BookRecommender"/>
+            <div class="card-overlay">
+              <a href="./assets/BR_demo.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/BookRecommender" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Machine Learning</div>
+            <div class="card-title">BookRecommender</div>
+            <p class="card-desc">iOS app that suggests books based on personal taste using a trained ML recommendation model. Users can preview books and decide if they match their interests.</p>
+            <div class="card-tags"><span class="tag tag-ios">Swift</span><span class="tag tag-ios">SwiftUI</span><span class="tag tag-ml">CoreML</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="games">
+          <div class="card-image"><img src="./assets/symphonyx.png" alt="Symphonyx"/>
+            <div class="card-overlay"><a href="./assets/symphonyxDEMO.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a></div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Game Dev</div>
+            <div class="card-title">Symphonyx</div>
+            <p class="card-desc">Audio-based puzzle game where the screen stays black — players navigate an eerie forest entirely by sound and haptic feedback. Put on headphones and immerse yourself.</p>
+            <div class="card-tags"><span class="tag tag-game">Unity</span><span class="tag tag-game">C#</span><span class="tag tag-game">Audio Design</span><span class="tag tag-ios">iOS</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="games">
+          <div class="card-image"><img src="./assets/chapterChase.png" alt="Chapter Chase"/>
+            <div class="card-overlay">
+              <a href="./assets/Chapter Chase Gameplay.mov" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/GameRepo" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Game Dev</div>
+            <div class="card-title">Chapter Chase</div>
+            <p class="card-desc">2D platformer where a writer recovers the lost pages of his book. Face dangers, collect ideas, and overcome the dreaded writer's block.</p>
+            <div class="card-tags"><span class="tag tag-game">Unity</span><span class="tag tag-game">C#</span><span class="tag tag-game">2D Platformer</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ml">
+          <div class="card-image"><img src="./assets/AskAI.png" alt="Just Ask AI"/>
+            <div class="card-overlay"><a href="https://medium.com/@antoniaambrosio/just-ask-ai-game-creation-66a4eddafad5" target="_blank" class="overlay-btn primary"><i class="fa-solid fa-book-open"></i> Read Article</a></div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">AI / Generative</div>
+            <div class="card-title">Just Ask AI</div>
+            <p class="card-desc">Tool empowering developers and indie teams to generate stunning 2D game assets using AI and Midjourney — dramatically accelerating the creative pipeline.</p>
+            <div class="card-tags"><span class="tag tag-ml">Generative AI</span><span class="tag tag-ml">Midjourney</span><span class="tag tag-game">Game Assets</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ios">
+          <div class="card-image"><img src="./assets/unori.png" alt="Unori"/>
+            <div class="card-overlay">
+              <a href="./assets/UnoriDEMO.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/ThePupasRepo" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">iOS / ML</div>
+            <div class="card-title">Unori</div>
+            <p class="card-desc">Educational iPad app for learning American Sign Language. Uses the camera with CoreML Vision to detect and score hand signs in real time — learn at your own pace.</p>
+            <div class="card-tags"><span class="tag tag-ios">Swift</span><span class="tag tag-ios">SwiftUI</span><span class="tag tag-ml">CoreML</span><span class="tag tag-ml">Vision</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="games">
+          <div class="card-image"><img src="./assets/treasure.png" alt="Treasure Hunter"/>
+            <div class="card-overlay">
+              <a href="./assets/TreasureDEMO.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
+              <a href="https://github.com/Fabio-Barbato/Unreal-Project" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Game Dev</div>
+            <div class="card-title">The Treasure Hunter</div>
+            <p class="card-desc">Immersive 3D first-person shooter set inside an ancient temple. Navigate chambers filled with riddles and traps to find the legendary treasure.</p>
+            <div class="card-tags"><span class="tag tag-game">Unreal Engine</span><span class="tag tag-game">C++</span><span class="tag tag-game">3D / FPS</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="systems">
+          <div class="card-image"><img src="./assets/LASD.jpg" alt="Data Structures"/>
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/LASD_Repository" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Systems / Algorithms</div>
+            <div class="card-title">Data Structures Library</div>
+            <p class="card-desc">Hand-crafted C++ libraries for core data structures: dynamic arrays, linked lists, binary trees, and matrices — built from scratch with performance in mind.</p>
+            <div class="card-tags"><span class="tag tag-sys">C++</span><span class="tag tag-sys">Algorithms</span><span class="tag tag-sys">OOP</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner fade-in">
+        <div>
+          <div class="section-label">// contact</div>
+          <h2 class="contact-title">Let's work <span style="color:var(--accent)">together</span></h2>
+          <p class="contact-sub">Whether it's a collaboration, an opportunity, or just a conversation about tech — my inbox is always open.</p>
+          <div class="contact-links">
+            <a href="mailto:fbarbato200@gmail.com" class="contact-link">
+              <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="contact-link-text"><strong>Send an Email</strong><span>fbarbato200@gmail.com</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:0.8rem"></i>
             </a>
-      
+            <a href="https://www.linkedin.com/in/fabio-barbato-a716a3125/" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div class="contact-link-text"><strong>LinkedIn</strong><span>fabio-barbato</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:0.8rem"></i>
+            </a>
+            <a href="https://github.com/Fabio-Barbato" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="contact-link-text"><strong>GitHub</strong><span>Fabio-Barbato</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:0.8rem"></i>
+            </a>
           </div>
-      </footer>
-    </section>
-    <!-- END Footer Section -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear()
-    </script>
-    <script src="./javascript/vanilla-tilt.min.js"></script>
-    <script type="text/javascript" src="./javascript/valtilt.js"></script>
-  </body>
+  <footer><span>Designed &amp; built by Fabio Barbato &middot; <span id="year"></span></span></footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      card.style.transitionDelay = (i % 3) * 0.08 + 's';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+      observer.observe(card);
+    });
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => {
+          if(filter === 'all' || card.dataset.category === filter){ card.classList.remove('hidden'); }
+          else { card.classList.add('hidden'); }
+        });
+      });
+    });
+  </script>
+</body>
 </html>
