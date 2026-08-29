@@ -1,441 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fabio Barbato</title>
-  <meta name="description" content="Fabio Barbato | Computer Science Student & Software Developer" />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous" />
-  
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    :root {
-      /* Nuova palette premium dark */
-      --bg: #050505;
-      --bg2: #0a0a0a;
-      --surface: #111111;
-      --surface2: #1a1a1a;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.2);
-      
-      /* Gradienti e accenti moderni (Cyan/Blue) */
-      --accent-primary: #00f2fe;
-      --accent-secondary: #4facfe;
-      --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      --accent-glow: rgba(0, 242, 254, 0.4);
-      
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      
-      /* Tipografia */
-      --font-heading: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-    
-    html { scroll-behavior: smooth; }
-    
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fabio Barbato — Computer Science Student & Developer</title>
+<meta name="description" content="Fabio Barbato | Computer Science student building robotics, AI and full-stack systems." />
 
-    /* Navbar ridisegnata stile "pill" fluttuante */
-    nav {
-      position: fixed;
-      top: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-      width: 90%;
-      max-width: 1000px;
-      background: rgba(17, 17, 17, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    }
-    
-    .nav-logo {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.2rem;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    
-    .nav-links a:hover { color: var(--text); }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    /* Hero Section */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 10rem 3rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Grid di sfondo più raffinata */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-    }
-    
-    /* Blob sfocati per l'atmosfera */
-    .hero-blob {
-      position: absolute; width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
-      top: -100px; right: -100px; pointer-events: none; filter: blur(40px);
-    }
-    .hero-blob2 {
-      position: absolute; width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
-      bottom: -100px; left: -100px; pointer-events: none; filter: blur(40px);
-    }
-    
-    .hero-content { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; z-index: 2; }
-    
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--accent-primary);
-      background: rgba(0, 242, 254, 0.05);
-      border: 1px solid rgba(0, 242, 254, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-    }
-    .hero-label::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--accent-primary);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent-glow);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
-    
-    h1 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
-    }
-    
-    /* Effetto testo sfumato sul nome */
-    .hero-name {
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-    
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      font-weight: 300;
-    }
-    
-    /* Bottoni Ridisegnati */
-    .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-    
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--text);
-      color: var(--bg);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
-      background: #ffffff;
-    }
-    
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 100px;
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    .btn-ghost:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-3px);
-    }
-    
-    /* Statistiche in Hero */
-    .hero-stats {
-      display: flex; gap: 4rem; margin-top: 5rem;
-      padding-top: 2.5rem; border-top: 1px solid var(--border);
-    }
-    .stat-num {
-      font-family: var(--font-heading);
-      font-weight: 700; font-size: 2.2rem;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-    
-    /* Indicatore Scorrimento */
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
-      color: var(--muted); font-size: 0.75rem; font-family: var(--font-mono); letter-spacing: 0.1em; text-decoration: none;
-    }
-    .scroll-line { width: 1px; height: 50px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; }
-    .scroll-line::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
-      background: var(--accent-primary); animation: scrollAnim 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-    }
-    @keyframes scrollAnim { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+<script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
-    /* Sezioni Generiche */
-    #about { padding: 8rem 3rem; background: var(--bg2); }
-    #projects { padding: 8rem 3rem; background: var(--bg); }
-    #contact { padding: 8rem 3rem; background: var(--bg2); border-top: 1px solid var(--border); }
-    
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);
-      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent-primary); }
-    
-    .section-title {
-      font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.5rem, 5vw, 3.5rem);
-      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 2rem;
-    }
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Layout About */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .about-img-frame { position: relative; display: inline-block; }
-    .about-img-frame::before {
-      content: ''; position: absolute; inset: -15px;
-      border: 1px solid var(--accent-primary); border-radius: 24px;
-    }
-    .about-img-frame img {
-      width: 100%; max-width: 400px; border-radius: 16px; display: block;
-      position: relative; z-index: 1;
-    }
-    
-    .about-text { color: var(--muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; font-weight: 300; }
-    
-    /* Skill Chips ridisegnate */
-    .skills-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .skill-chip {
-      font-family: var(--font-mono); font-size: 0.8rem; padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-      border-radius: 8px; color: var(--text); transition: all 0.3s ease;
-    }
-    .skill-chip:hover { border-color: var(--accent-primary); background: rgba(0, 242, 254, 0.05); color: var(--accent-primary); transform: translateY(-2px); }
+  :root {
+    --bg: #0e1116;
+    --surface: #171b21;
+    --surface-2: #1f242c;
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.24);
+    --text: #f5f6f8;
+    --muted: #9aa3af;
+    --muted-2: #646e7a;
 
-    /* Projects Section */
-    .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; }
-    
-    /* Tab Filtri moderni */
-    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; background: var(--surface2); padding: 0.4rem; border-radius: 100px; border: 1px solid var(--border); }
-    .filter-tab {
-      font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; padding: 0.5rem 1.2rem;
-      background: transparent; border: none; border-radius: 100px; color: var(--muted);
-      cursor: pointer; transition: all 0.3s ease;
-    }
-    .filter-tab:hover { color: var(--text); }
-    .filter-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 10px rgba(0,0,0,0.2); border: 1px solid var(--border); }
-    
-    /* Griglia Progetti */
-    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      overflow: hidden; display: flex; flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      opacity: 0; transform: translateY(30px);
-    }
-    .project-card.visible { opacity: 1; transform: none; }
-    .project-card.hidden { display: none; }
-    .project-card:hover {
-      transform: translateY(-8px) scale(1.01) !important;
-      border-color: rgba(0, 242, 254, 0.3);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.05);
-    }
-    
-    .card-image { position: relative; overflow: hidden; background: var(--surface2); display: flex; }
-    .card-image img { width: 100%; height: auto; object-fit: cover; transition: transform 0.6s ease; display: block; }
-    .project-card:hover .card-image img { transform: scale(1.08); }
-    
-    .card-overlay {
-      position: absolute; inset: 0; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(3px);
-      display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0; transition: opacity 0.3s ease;
-    }
-    .project-card:hover .card-overlay { opacity: 1; }
-    
-    .overlay-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem;
-      border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: transform 0.2s;
-    }
-    .overlay-btn:hover { transform: scale(1.05); }
-    .overlay-btn.primary { background: var(--text); color: var(--bg); }
-    .overlay-btn.secondary { background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid var(--border); }
-    
-    .card-body { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; border-top: 1px solid var(--border); }
-    .card-category { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-primary); text-transform: uppercase; margin-bottom: 0.8rem; }
-    .card-title { font-family: var(--font-heading); font-weight: 600; font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--text); }
-    .card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.5rem; font-weight: 300; }
-    
-    /* Tags Minimal */
-    .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
-    .tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.3rem 0.8rem; border-radius: 100px; font-weight: 500; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--muted); }
-    
-    .project-card.featured { grid-column: span 2; flex-direction: row; }
-    .project-card.featured .card-image { width: 55%; flex-shrink: 0; aspect-ratio: auto; }
-    .project-card.featured .card-body { padding: 2.5rem; border-top: none; border-left: 1px solid var(--border); }
-    .project-card.featured .card-title { font-size: 1.8rem; }
-    
-    /* Contact Section */
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .contact-sub { color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; font-size: 1.05rem; font-weight: 300; }
-    
-    .contact-links { display: flex; flex-direction: column; gap: 1.2rem; }
-    .contact-link {
-      display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem 1.5rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      text-decoration: none; color: var(--text); transition: all 0.3s ease;
-    }
-    .contact-link:hover { border-color: var(--accent-primary); transform: translateX(8px); background: rgba(0, 242, 254, 0.02); }
-    
-    .contact-link-icon {
-      width: 48px; height: 48px; border-radius: 12px; background: var(--surface2);
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent-primary); flex-shrink: 0;
-      border: 1px solid var(--border);
-    }
-    .contact-link-text strong { display: block; font-size: 0.95rem; font-family: var(--font-heading); font-weight: 600; }
-    .contact-link-text span { font-size: 0.85rem; color: var(--muted); font-family: var(--font-mono); }
-    
-    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
-    
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-    
-    /* Responsive Design */
-    @media(max-width:1024px) {
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      .project-card.featured { grid-column: span 2; flex-direction: column; }
-      .project-card.featured .card-image { width: 100%; aspect-ratio: 16/9; }
-      .project-card.featured .card-body { border-left: none; border-top: 1px solid var(--border); }
-      .about-grid { grid-template-columns: 1fr; gap: 4rem; }
-      .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
-    }
-    
-    @media(max-width:768px) {
-      nav { width: 100%; top: 0; border-radius: 0; padding: 1rem 1.5rem; border-top: none; border-left: none; border-right: none; }
-      .nav-links { display: none; }
-      #hero { padding-top: 8rem; }
-      h1 { font-size: 2.8rem; }
-      .hero-stats { flex-direction: column; gap: 2rem; }
-      #hero, #about, #projects, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: span 1; }
-    }
-  </style>
+    --accent: #ffd23f;
+    --accent-ink: #0e1116;
+    --accent-soft: rgba(255,210,63,0.12);
+    --coral: #ff6b57;
+    --ok: #6fcf8f;
+
+    --radius: 14px;
+    --radius-sm: 10px;
+
+    --font-display: 'Unbounded', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .container { max-width: 1220px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ---------- nav ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 72px; display: flex; align-items: center;
+    background: rgba(14,17,22,0.85);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  header .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+
+  .brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    background: var(--accent); color: var(--accent-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem;
+  }
+  .brand-name { font-weight: 600; font-size: 0.95rem; }
+
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.92rem; transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--text); }
+
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--surface); border: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+    padding: 0.4rem 0.85rem; border-radius: var(--radius-sm);
+  }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
+
+  /* ---------- hero ---------- */
+  #hero { min-height: 94dvh; display: flex; align-items: center; padding: 7rem 0 3rem; }
+  .hero-inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; }
+
+  .robot-glyph { width: 46px; height: 46px; margin-bottom: 1.4rem; }
+  .robot-glyph path, .robot-glyph circle, .robot-glyph rect { stroke: var(--accent); }
+
+  .hero-copy h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.6rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  .hero-copy p {
+    font-size: 1.08rem; color: var(--muted); max-width: 46ch; font-weight: 300; margin-bottom: 2rem;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; padding: 0.85rem 1.5rem; border-radius: var(--radius-sm);
+    transition: all 0.2s ease; border: 2px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-3px) rotate(-0.5deg); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+  .hero-hint { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted-2); }
+  .hero-hint strong { color: var(--accent); }
+
+  /* ---------- terminal (signature interactive element) ---------- */
+  .terminal {
+    background: var(--surface); border: 1px solid var(--border-strong);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.75rem 1rem; background: var(--surface-2); border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+  }
+  .terminal-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .terminal-bar span.label { margin-left: 0.3rem; }
+
+  .terminal-body {
+    height: 340px; overflow-y: auto; padding: 1.1rem 1.2rem;
+    font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  }
+  .terminal-line { margin-bottom: 0.3rem; white-space: pre-wrap; }
+  .terminal-line.system { color: var(--muted); }
+  .terminal-line.echo { color: var(--accent); }
+  .terminal-line.echo::before { content: "guest@fb-01:~$ "; color: var(--muted-2); }
+
+  .terminal-input-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.2rem; border-top: 1px solid var(--border); }
+  .terminal-prompt { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted-2); white-space: nowrap; }
+  .terminal-input-row input {
+    flex: 1; background: transparent; border: none; outline: none;
+    font-family: var(--font-mono); font-size: 0.85rem; color: var(--text);
+  }
+  .terminal-input-row input::placeholder { color: var(--muted-2); }
+
+  /* ---------- capability strip ---------- */
+  #capabilities { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+  .cap-row { display: flex; flex-wrap: wrap; }
+  .cap-row span {
+    font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted);
+    padding: 1rem 1.6rem; border-right: 1px solid var(--border);
+  }
+  .cap-row span:last-child { border-right: none; }
+  .cap-row span strong { color: var(--accent); font-weight: 500; }
+
+  /* ---------- section shell ---------- */
+  section { padding: 6.5rem 0; }
+  .section-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -0.01em; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } }
+
+  /* ---------- about ---------- */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: center; }
+  .photo-frame { border: 2px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; max-width: 320px; position: relative; }
+  .photo-frame img { width: 100%; filter: grayscale(0.2); }
+  .photo-badge {
+    position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px;
+    background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: var(--accent-ink); font-size: 1.1rem;
+  }
+
+  .about-text p { color: var(--muted); font-size: 1.02rem; line-height: 1.8; font-weight: 300; margin-bottom: 1.3rem; max-width: 58ch; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.6rem; }
+  .skill-chip {
+    font-family: var(--font-mono); font-size: 0.76rem; padding: 0.5rem 0.85rem;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--muted);
+  }
+
+  /* ---------- projects ---------- */
+  .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.8rem; flex-wrap: wrap; gap: 1.4rem; }
+  .filter-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .filter-tab {
+    font-family: var(--font-mono); font-weight: 500; font-size: 0.78rem;
+    padding: 0.55rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--muted); cursor: pointer; transition: all 0.2s ease;
+  }
+  .filter-tab:hover { color: var(--text); border-color: var(--border-strong); }
+  .filter-tab.active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    opacity: 0; transform: translateY(20px);
+  }
+  .project-card.visible { opacity: 1; transform: none; }
+  .project-card.hidden { display: none; }
+  .project-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card { opacity: 1; transform: none; transition: border-color 0.2s ease; }
+    .project-card:hover { transform: none; }
+  }
+
+  .card-image { position: relative; overflow: hidden; background: var(--surface-2); }
+  .card-image img { width: 100%; height: 190px; object-fit: cover; transition: transform 0.5s ease; }
+  .project-card:hover .card-image img { transform: scale(1.05); }
+  .card-image .cat-chip {
+    position: absolute; top: 0.7rem; left: 0.7rem;
+    background: var(--accent); color: var(--accent-ink);
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+    padding: 0.25rem 0.55rem; border-radius: 6px; text-transform: uppercase;
+  }
+
+  .card-overlay {
+    position: absolute; inset: 0; background: rgba(14,17,22,0.85);
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    opacity: 0; transition: opacity 0.25s ease;
+  }
+  .project-card:hover .card-overlay, .project-card:focus-within .card-overlay { opacity: 1; }
+  .overlay-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 600; text-decoration: none;
+    padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+  }
+  .overlay-btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .overlay-btn.secondary { background: rgba(255,255,255,0.12); color: var(--text); }
+
+  .card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .card-desc { font-size: 0.89rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.2rem; font-weight: 300; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+  .tag { font-family: var(--font-mono); font-size: 0.68rem; padding: 0.3rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; color: var(--muted-2); }
+
+  .project-card.featured { grid-column: span 2; flex-direction: row; }
+  .project-card.featured .card-image { width: 50%; flex-shrink: 0; }
+  .project-card.featured .card-image img { height: 100%; }
+  .project-card.featured .card-body { padding: 2.2rem; justify-content: center; }
+  .project-card.featured .card-title { font-size: 1.6rem; }
+
+  /* ---------- contact ---------- */
+  #contact { border-top: 1px solid var(--border); }
+  .contact-wrap { max-width: 620px; margin: 0 auto; text-align: center; }
+  .contact-wrap p { color: var(--muted); font-size: 1.02rem; font-weight: 300; margin: 1.1rem 0 2.4rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.9rem; text-align: left; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.1rem; padding: 1.05rem 1.2rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    text-decoration: none; color: var(--text); transition: all 0.25s ease;
+  }
+  .contact-link:hover { border-color: var(--accent); transform: translateX(6px); }
+  .contact-icon {
+    width: 42px; height: 42px; border-radius: var(--radius-sm); background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center; font-size: 1.05rem; color: var(--accent); flex-shrink: 0;
+  }
+  .contact-text strong { display: block; font-size: 0.94rem; font-weight: 600; }
+  .contact-text span { font-size: 0.82rem; color: var(--muted); }
+
+  footer { text-align: center; padding: 2.2rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted-2); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .photo-frame { max-width: 280px; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card.featured { grid-column: span 2; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .status-pill { display: none; }
+    section { padding: 4.5rem 0; }
+    .container { padding: 0 1.4rem; }
+    .terminal-body { height: 280px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; flex-direction: column; }
+    .project-card.featured .card-image { width: 100%; aspect-ratio: 16/9; }
+    .cap-row { flex-direction: column; }
+    .cap-row span { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="#hero" class="nav-logo">FB.</a>
+
+<header>
+  <div class="container">
+    <a href="#hero" class="brand">
+      <span class="brand-mark">FB</span>
+      <span class="brand-name">Fabio Barbato</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </nav>
+    <span class="status-pill"><span class="dot" aria-hidden="true"></span>Open to opportunities</span>
+  </div>
+</header>
 
-  <div id="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-blob"></div>
-    <div class="hero-blob2"></div>
-    <div class="hero-content">
-      <div class="hero-label">Available for opportunities</div>
-      <h1>Hi, I'm<br><span class="hero-name">Fabio Barbato</span></h1>
-      <p class="hero-sub">Master's student in Computer Science, specializing in AI & Robotics. Experienced in academic projects driven by innovative concepts, with a strong interest in cognitive robotics, scalable software systems, and AI-driven autonomous solutions.</p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn-primary"><i class="fa-solid fa-grid-2"></i> View Projects</a>
-        <a href="#contact" class="btn-ghost"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+<main>
+  <section id="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <svg class="robot-glyph" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="14" y="18" width="20" height="18" rx="4" stroke-width="2.4"/>
+          <circle cx="20" cy="27" r="2.2" fill="var(--accent)"/>
+          <circle cx="28" cy="27" r="2.2" fill="var(--accent)"/>
+          <path d="M24 18V11" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="24" cy="8" r="2.6" stroke-width="2.4"/>
+          <path d="M14 30H8M40 30h-6" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <h1>Hi, I'm<br>Fabio Barbato</h1>
+        <p>Computer science student building robots, AI and apps.</p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary"><i class="ph ph-squares-four" aria-hidden="true"></i> View Projects</a>
+          <a href="#contact" class="btn btn-ghost"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> Get in Touch</a>
+        </div>
+        <p class="hero-hint">👉 that's a real terminal — type <strong>help</strong> to talk to it.</p>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="label">FB-01 · terminal</span>
+        </div>
+        <div class="terminal-body" id="term-body" role="log" aria-live="polite">
+          <div class="terminal-line system">FB-01 unit online. I'm a small scripted terminal, not a real AI — but I know a few tricks.</div>
+          <div class="terminal-line system">Type "help" to see what I can do.</div>
+        </div>
+        <div class="terminal-input-row">
+          <label class="terminal-prompt" for="term-input">guest@fb-01:~$</label>
+          <input id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command…" />
+        </div>
       </div>
     </div>
-    <a href="#about" class="scroll-hint"><div class="scroll-line"></div>scroll</a>
-  </div>
+  </section>
+
+  <section id="capabilities">
+    <div class="container">
+      <div class="cap-row">
+        <span><strong>Robotics</strong> &amp; Systems</span>
+        <span><strong>AI</strong> &amp; Machine Learning</span>
+        <span><strong>iOS</strong> Development</span>
+        <span><strong>Game</strong> Development</span>
+      </div>
+    </div>
+  </section>
 
   <section id="about">
     <div class="container">
       <div class="about-grid fade-in">
-        <div><div class="about-img-frame"><img src="./assets/profile.png" alt="Fabio Barbato"/></div></div>
-        <div>
-          <h2 class="section-title">Turning ideas into <br><span class="hero-name">working systems</span></h2>
+        <div class="photo-frame">
+          <img src="./assets/profile.png" alt="Portrait of Fabio Barbato" />
+          <div class="photo-badge" aria-hidden="true"><i class="ph ph-robot"></i></div>
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">From concept to running system</h2>
+          <p>I like projects where I build every layer: hardware, backend logic, and the interface someone actually uses. Most of what's below started as a course assignment and kept going after the grade was in.</p>
+          <p>Right now that means robotics simulation, AI algorithms, and a handful of iOS apps.</p>
           <div class="skills-list">
-            <span class="skill-chip">C / C++</span><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">Swift</span><span class="skill-chip">SQL / PL·SQL</span><span class="skill-chip">ROS2</span><span class="skill-chip">Unity</span><span class="skill-chip">Unreal Engine</span><span class="skill-chip">CoreML</span><span class="skill-chip">Docker</span><span class="skill-chip">Git</span><span class="skill-chip">Webots</span>
+            <span class="skill-chip">C / C++</span><span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">Swift</span><span class="skill-chip">SQL / PL-SQL</span><span class="skill-chip">ROS2</span><span class="skill-chip">Unity</span><span class="skill-chip">Unreal Engine</span><span class="skill-chip">CoreML</span><span class="skill-chip">Docker</span><span class="skill-chip">Git</span><span class="skill-chip">Webots</span>
           </div>
         </div>
       </div>
@@ -445,200 +381,250 @@
   <section id="projects">
     <div class="container">
       <div class="projects-header fade-in">
-        <div><div class="section-label">projects</div><h2 class="section-title">Things I've built</h2></div>
+        <h2 class="section-title">Selected work</h2>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="systems">Systems</button>
+          <button class="filter-tab" data-filter="ml">AI / ML</button>
+          <button class="filter-tab" data-filter="ios">iOS</button>
+          <button class="filter-tab" data-filter="game">Game</button>
+          <button class="filter-tab" data-filter="IoT">IoT</button>
+        </div>
       </div>
 
       <div class="projects-grid">
-        <div class="project-card" data-category="systems">
-          <div class="card-image"><img src="./assets/robot.png" alt="Webots+ROS2"/>
-            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/webots-ros2-setup.git" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+        <div class="project-card featured" data-category="systems">
+          <div class="card-image"><span class="cat-chip">Robotics</span><img src="./assets/robot.png" alt="Webots and ROS2 simulation setup" />
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/webots-ros2-setup.git" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Source Code</a></div>
           </div>
           <div class="card-body">
-            <div class="card-category">Robotics</div>
             <div class="card-title">Webots + ROS2 Setup</div>
-            <p class="card-desc">A complete setup guide combining the Webots simulator (macOS) with ROS2 Humble running in Docker. Includes dedicated ROS2 nodes for sensor publishing and command handling, plus an obstacle avoidance algorithm.</p>
+            <p class="card-desc">A complete setup combining the Webots simulator (macOS) with ROS2 Humble running in Docker. Includes dedicated ROS2 nodes for sensor publishing and command handling, plus an obstacle avoidance algorithm.</p>
             <div class="card-tags"><span class="tag">ROS2</span><span class="tag">Docker</span><span class="tag">Python</span><span class="tag">Webots</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="IoT">
-          <div class="card-image"><img src="./assets/SmartBin.png" alt="SmartBin"/>
-            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/SmartBin.git" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+          <div class="card-image"><span class="cat-chip">IoT</span><img src="./assets/SmartBin.png" alt="SmartBin dashboard" />
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/SmartBin.git" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Source Code</a></div>
           </div>
           <div class="card-body">
-            <div class="card-category">IoT</div>
             <div class="card-title">SmartBin</div>
-            <p class="card-desc">Real-time intelligent bin monitoring system. Features a live dashboard, predictive ML model for fill-level forecasting, and an optimal routing algorithm for collection vehicles.</p>
+            <p class="card-desc">Real-time bin monitoring system with a live dashboard, a predictive ML model for fill-level forecasting, and a routing algorithm for collection vehicles.</p>
             <div class="card-tags"><span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Dashboard</span><span class="tag">SQL</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="ml">
-          <div class="card-image"><img src="./assets/Methods4AI.png" alt="Methods4AI Solver"/>
-            <div class="card-overlay">
-              <a href="https://fabio-barbato.github.io/Methods4AI-Solver/" target="_blank" class="overlay-btn primary"><i class="fa-solid fa-globe"></i> Live App</a>
-            </div>
+          <div class="card-image"><span class="cat-chip">AI</span><img src="./assets/Methods4AI.png" alt="Methods4AI Solver interface" />
+            <div class="card-overlay"><a href="https://fabio-barbato.github.io/Methods4AI-Solver/" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-globe-simple" aria-hidden="true"></i> Live App</a></div>
           </div>
           <div class="card-body">
-            <div class="card-category">AI / Algorithms</div>
             <div class="card-title">Methods4AI Solver</div>
-            <p class="card-desc">Interactive web application for solving and comparing classic Artificial Intelligence problems. Features comprehensive implementations of graph search algorithms, Min-Max with Alpha-Beta pruning, and strategic game analysis including Nash Equilibria.</p>
-            <div class="card-tags"><span class="tag">Web App</span><span class="tag">Algorithms</span><span class="tag">Game Theory</span><span class="tag">AI</span></div>
+            <p class="card-desc">Interactive app for solving and comparing classic AI problems: graph search, Min-Max with Alpha-Beta pruning, and Nash Equilibria analysis.</p>
+            <div class="card-tags"><span class="tag">Web App</span><span class="tag">Algorithms</span><span class="tag">Game Theory</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="systems">
-          <div class="card-image"><img src="./assets/BitBooks.png" alt="BitBooks"/>
+          <div class="card-image"><span class="cat-chip">Systems</span><img src="./assets/BitBooks.png" alt="BitBooks library client" />
             <div class="card-overlay">
-              <a href="./assets/BT_demo.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
-              <a href="https://github.com/Fabio-Barbato/BitBooks/" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="./assets/BT_demo.mp4" target="_blank" rel="noopener" class="overlay-btn secondary"><i class="ph ph-play" aria-hidden="true"></i> Demo</a>
+              <a href="https://github.com/Fabio-Barbato/BitBooks/" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Code</a>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-category">Systems Programming</div>
             <div class="card-title">BitBooks</div>
-            <p class="card-desc">Client-server library app built on TCP/IP sockets and multi-threading. Multiple clients handled simultaneously with concurrency-safe book lending logic.</p>
-            <div class="card-tags"><span class="tag">C</span><span class="tag">TCP/IP</span><span class="tag">Multi-threading</span><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">iOS</span></div>
+            <p class="card-desc">Client-server library app built on TCP/IP sockets and multi-threading, handling multiple clients with concurrency-safe lending logic.</p>
+            <div class="card-tags"><span class="tag">C</span><span class="tag">TCP/IP</span><span class="tag">Multi-threading</span><span class="tag">Swift</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="ml">
-          <div class="card-image"><img src="./assets/BookRecommender.png" alt="BookRecommender"/>
+          <div class="card-image"><span class="cat-chip">iOS / ML</span><img src="./assets/BookRecommender.png" alt="BookRecommender app" />
             <div class="card-overlay">
-              <a href="./assets/BR_demo.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
-              <a href="https://github.com/FabioBarbat0/BookRecommender" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="./assets/BR_demo.mp4" target="_blank" rel="noopener" class="overlay-btn secondary"><i class="ph ph-play" aria-hidden="true"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/BookRecommender" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Code</a>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-category">iOS / ML</div>
             <div class="card-title">BookRecommender</div>
-            <p class="card-desc">iOS app that suggests books based on personal taste using a trained ML recommendation model. Users can preview books and decide if they match their interests.</p>
+            <p class="card-desc">iOS app that suggests books based on personal taste using a trained on-device ML model. Users preview books and decide if they match their interests.</p>
             <div class="card-tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">CoreML</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="ios">
-          <div class="card-image"><img src="./assets/unori.png" alt="Unori"/>
+          <div class="card-image"><span class="cat-chip">iOS / ML</span><img src="./assets/unori.png" alt="Unori sign language learning app" />
             <div class="card-overlay">
-              <a href="./assets/UnoriDEMO.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
-              <a href="https://github.com/FabioBarbat0/ThePupasRepo" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="./assets/UnoriDEMO.mp4" target="_blank" rel="noopener" class="overlay-btn secondary"><i class="ph ph-play" aria-hidden="true"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/ThePupasRepo" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Code</a>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-category">iOS / ML</div>
             <div class="card-title">Unori</div>
             <p class="card-desc">Educational iPad app for learning American Sign Language. Uses the camera with CoreML Vision to detect and score hand signs in real time.</p>
-            <div class="card-tags"><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">CoreML</span><span class="tag">Vision</span></div>
+            <div class="card-tags"><span class="tag">Swift</span><span class="tag">CoreML</span><span class="tag">Vision</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="game">
-          <div class="card-image"><img src="./assets/chapterChase.png" alt="Chapter Chase"/>
+          <div class="card-image"><span class="cat-chip">Game</span><img src="./assets/chapterChase.png" alt="Chapter Chase platformer" />
             <div class="card-overlay">
-              <a href="./assets/Chapter Chase Gameplay.mov" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
-              <a href="https://github.com/FabioBarbat0/GameRepo" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="./assets/Chapter Chase Gameplay.mov" target="_blank" rel="noopener" class="overlay-btn secondary"><i class="ph ph-play" aria-hidden="true"></i> Demo</a>
+              <a href="https://github.com/FabioBarbat0/GameRepo" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Code</a>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-category">Game</div>
             <div class="card-title">Chapter Chase</div>
-            <p class="card-desc">A 2D platform videogame. Help a writer to recover the lost pages of his book, to face dangers and to collect new ideas to overcome the writer's block.</p>
-            <div class="card-tags"><span class="tag">Unity</span><span class="tag">iOS</span><span class="tag">C#</span><span class="tag">Behaviour tree</span>
-          </div>
+            <p class="card-desc">A 2D platformer where a writer recovers the lost pages of his book, facing hazards and collecting ideas to overcome writer's block.</p>
+            <div class="card-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Behaviour Tree</span></div>
           </div>
         </div>
 
         <div class="project-card" data-category="game">
-          <div class="card-image"><img src="./assets/treasure.png" alt="The Treasure Hunter"/>
+          <div class="card-image"><span class="cat-chip">Game</span><img src="./assets/treasure.png" alt="The Treasure Hunter first-person shooter" />
             <div class="card-overlay">
-              <a href="./assets/TreasureDEMO.mp4" target="_blank" class="overlay-btn secondary"><i class="fa-solid fa-play"></i> Demo</a>
-              <a href="https://github.com/Fabio-Barbato/Unreal-Project.git" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="./assets/TreasureDEMO.mp4" target="_blank" rel="noopener" class="overlay-btn secondary"><i class="ph ph-play" aria-hidden="true"></i> Demo</a>
+              <a href="https://github.com/Fabio-Barbato/Unreal-Project.git" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Code</a>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-category">Game</div>
             <div class="card-title">The Treasure Hunter</div>
-            <p class="card-desc">An immersive 3D first-person shooter (FPS) video game that plunges players into a perilous adventure within an ancient temple.</p>
-            <div class="card-tags"><span class="tag">Unreal Engine 4</span><span class="tag">Blueprints</span><span class="tag">Blender</span>
+            <p class="card-desc">An immersive 3D first-person shooter that plunges players into a perilous adventure within an ancient temple.</p>
+            <div class="card-tags"><span class="tag">Unreal Engine 4</span><span class="tag">Blueprints</span><span class="tag">Blender</span></div>
           </div>
-        </div>
         </div>
 
         <div class="project-card" data-category="systems">
-          <div class="card-image"><img src="./assets/LASD.jpg" alt="Data Structures"/>
-            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/LASD_Repository" target="_blank" class="overlay-btn primary"><i class="fa-brands fa-github"></i> Source Code</a></div>
+          <div class="card-image"><span class="cat-chip">Systems</span><img src="./assets/LASD.jpg" alt="Data Structures Library diagram" />
+            <div class="card-overlay"><a href="https://github.com/Fabio-Barbato/LASD_Repository" target="_blank" rel="noopener" class="overlay-btn primary"><i class="ph ph-github-logo" aria-hidden="true"></i> Source Code</a></div>
           </div>
           <div class="card-body">
-            <div class="card-category">Systems / Algorithms</div>
             <div class="card-title">Data Structures Library</div>
-            <p class="card-desc">Hand-crafted C++ libraries for core data structures: dynamic arrays, linked lists, binary trees, and matrices — built from scratch with performance in mind.</p>
+            <p class="card-desc">Hand-crafted C++ libraries for core data structures: dynamic arrays, linked lists, binary trees, and matrices, built from scratch with performance in mind.</p>
             <div class="card-tags"><span class="tag">C++</span><span class="tag">Algorithms</span><span class="tag">OOP</span></div>
           </div>
         </div>
       </div>
     </div>
-    </div>
   </section>
 
   <section id="contact">
     <div class="container">
-      <div class="contact-inner fade-in">
-        <div>
-          <div class="section-label">contact</div>
-          <h2 class="section-title">Let's stay<br><span class="hero-name">in touch</span></h2>
-          <div class="contact-links">
-            <a href="mailto:fbarbato200@gmail.com" class="contact-link">
-              <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="contact-link-text"><strong>Send an Email</strong><span>fbarbato200@gmail.com</span></div>
-              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:1rem"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/fabio-barbato-a716a3125/" target="_blank" class="contact-link">
-              <div class="contact-link-icon"><i class="fa-brands fa-linkedin"></i></div>
-              <div class="contact-link-text"><strong>LinkedIn</strong><span>fabio-barbato</span></div>
-              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:1rem"></i>
-            </a>
-            <a href="https://github.com/Fabio-Barbato" target="_blank" class="contact-link">
-              <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
-              <div class="contact-link-text"><strong>GitHub</strong><span>Fabio-Barbato</span></div>
-              <i class="fa-solid fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:1rem"></i>
-            </a>
-          </div>
+      <div class="contact-wrap fade-in">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-links">
+          <a href="mailto:fbarbato200@gmail.com" class="contact-link">
+            <div class="contact-icon"><i class="ph ph-envelope-simple" aria-hidden="true"></i></div>
+            <div class="contact-text"><strong>Email</strong><span>fbarbato200@gmail.com</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/fabio-barbato-a716a3125/" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-icon"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></div>
+            <div class="contact-text"><strong>LinkedIn</strong><span>fabio-barbato</span></div>
+          </a>
+          <a href="https://github.com/Fabio-Barbato" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-icon"><i class="ph ph-github-logo" aria-hidden="true"></i></div>
+            <div class="contact-text"><strong>GitHub</strong><span>Fabio-Barbato</span></div>
+          </a>
         </div>
       </div>
     </div>
   </section>
+</main>
 
-  <footer><span>Designed &amp; built by Fabio Barbato &middot; <span id="year"></span></span></footer>
+<footer>Designed &amp; built by Fabio Barbato &middot; <span id="year"></span></footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
-    }, {threshold: 0.1});
-    
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-      card.style.transitionDelay = (i % 3) * 0.1 + 's';
-      observer.observe(card);
-    });
-    
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        document.querySelectorAll('.project-card').forEach(card => {
-          if(filter === 'all' || card.dataset.category === filter){ 
-            card.classList.remove('hidden'); 
-            setTimeout(() => card.classList.add('visible'), 50);
-          } else { 
-            card.classList.remove('visible');
-            setTimeout(() => card.classList.add('hidden'), 300);
-          }
-        });
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.project-card').forEach((card, i) => {
+    card.style.transitionDelay = (i % 3) * 0.08 + 's';
+    observer.observe(card);
+  });
+
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+          requestAnimationFrame(() => card.classList.add('visible'));
+        } else {
+          card.classList.remove('visible');
+          setTimeout(() => card.classList.add('hidden'), 250);
+        }
       });
     });
-  </script>
+  });
+
+  /* ---------- FB-01 terminal ---------- */
+  (function () {
+    const body = document.getElementById('term-body');
+    const input = document.getElementById('term-input');
+    const jokes = [
+      "Why did the robot go on a diet? Too many bytes.",
+      "I asked ROS2 for a hug. It published to /affection but nobody subscribed.",
+      "My code and I have a great relationship: it doesn't work, I don't sleep."
+    ];
+
+    function print(text, cls) {
+      const line = document.createElement('div');
+      line.className = 'terminal-line ' + (cls || 'system');
+      line.textContent = text;
+      body.appendChild(line);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handle(cmdRaw) {
+      const cmd = cmdRaw.trim().toLowerCase();
+      if (!cmd) return;
+      print(cmdRaw, 'echo');
+
+      if (cmd === 'help') {
+        print('available commands: about, projects, skills, contact, joke, whoami, clear');
+      } else if (cmd === 'about') {
+        print('Fabio Barbato — CS student focused on robotics, AI and full-stack development.');
+      } else if (cmd === 'projects') {
+        print('opening the project archive…');
+        scrollToId('projects');
+      } else if (cmd === 'skills') {
+        print('C/C++, Java, Python, Swift, ROS2, Unity, Unreal Engine, CoreML, Docker.');
+      } else if (cmd === 'contact') {
+        print('routing you to the contact section…');
+        scrollToId('contact');
+      } else if (cmd === 'whoami') {
+        print('you are: guest. I am: FB-01, a small scripted terminal, not a real AI.');
+      } else if (cmd.startsWith('sudo')) {
+        print('nice try — this unit does not grant root to strangers.');
+      } else if (cmd === 'joke') {
+        print(jokes[Math.floor(Math.random() * jokes.length)]);
+      } else if (cmd === 'clear') {
+        body.innerHTML = '';
+      } else {
+        print('command not recognized. try "help".');
+      }
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handle(input.value);
+        input.value = '';
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
